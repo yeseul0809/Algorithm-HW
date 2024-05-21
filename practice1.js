@@ -15,52 +15,46 @@
 // 입력: "hello World"
 // 출력: {'h': 1, 'e': 1, 'l': 3, 'o': 2, ' ': 1, 'W': 1, 'r': 1, 'd': 1}
 
-
-
 function countCharacters(s) {
-    // 함수 countCharacters(문자열 s):
-    // characterCount = 빈 객체 {}
-  
-    // 반복문 i = 0에서 s.length까지:
-    //     문자 = s[i]
-    //     만약 characterCount[문자]가 존재하지 않으면:
-    //         characterCount[문자] = 1
-    //     그렇지 않으면:
-    //         characterCount[문자] += 1
-  
-    // 반환 characterCount
-  
-    const characterCount = {};
-  
-    for (let i = 0; i < s.length; i++) {
-      if (!characterCount[s[i]]) {
-        characterCount[s[i]] = 1;
-      } else {
-        characterCount[s[i]] += 1;
-      }
-    }
-    return characterCount;
+  // 결과를 저장할 객체 선언
+  // 입력받은 문자열을 순회한다.(문자열의 길이만큼)
+  // 결과 객체에 해당 문자가 있다면 +1 해주고, 없다면 1.
+  // 결과를 반환한다.
+
+  const result = {};
+  for (let i = 0; i < s.length; i++) {
+    result[s[i]] ? result[s[i]]++ : (result[s[i]] = 1);
   }
+  return result;
+}
 
 // 테스트 코드
 function testCountCharacters() {
-    const testCases = [
-        { input: "hello world", expected: {'h': 1, 'e': 1, 'l': 3, 'o': 2, ' ': 1, 'w': 1, 'r': 1, 'd': 1} },
-        { input: "banana", expected: {'b': 1, 'a': 3, 'n': 2} },
-        { input: "", expected: {} },
-        { input: "aabbcc", expected: {'a': 2, 'b': 2, 'c': 2} },
-    ];
+  const testCases = [
+    {
+      input: "hello world",
+      expected: { h: 1, e: 1, l: 3, o: 2, " ": 1, w: 1, r: 1, d: 1 },
+    },
+    { input: "banana", expected: { b: 1, a: 3, n: 2 } },
+    { input: "", expected: {} },
+    { input: "aabbcc", expected: { a: 2, b: 2, c: 2 } },
+  ];
 
-    testCases.forEach(({input, expected}, index) => {
-        try {
-            const result = countCharacters(input);
-            const isEqual = JSON.stringify(result) === JSON.stringify(expected);
-            if (!isEqual) throw new Error(`Expected ${JSON.stringify(expected)}, but got ${JSON.stringify(result)}`);
-            console.log(`Test ${index + 1}: Passed`);
-        } catch (error) {
-            console.log(`Test ${index + 1}: Failed - ${error.message}`);
-        }
-    });
+  testCases.forEach(({ input, expected }, index) => {
+    try {
+      const result = countCharacters(input);
+      const isEqual = JSON.stringify(result) === JSON.stringify(expected);
+      if (!isEqual)
+        throw new Error(
+          `Expected ${JSON.stringify(expected)}, but got ${JSON.stringify(
+            result
+          )}`
+        );
+      console.log(`Test ${index + 1}: Passed`);
+    } catch (error) {
+      console.log(`Test ${index + 1}: Failed - ${error.message}`);
+    }
+  });
 }
 
 // 테스트 함수 호출 : 터미널에 node practice1.js 실행
