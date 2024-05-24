@@ -33,7 +33,8 @@
 
 function countConsistentStrings(allowed, words) {
   // 문자의 개수를 세는 count 변수 선언
-  // 각각의 문자가 words 배열 안에 있는지 순회하며
+  // 각각의 문자가 allowed 배열 안에 있는지 순회하며 true,false 구분 (이중배열)
+  // 처음엔 true 로 가정
   // 동일한 문자가 있으면 count++
   // count return
 
