@@ -15,30 +15,53 @@
 // 입력: "hello", "bello"
 // 출력: false
 
+// function isAnagram(a, b) {
+// 문자열 a,b를 toLowerCase(), toUpperCase() + 공백제거 하기
+// 소문자로 공백이 제거된 문자열 b를 배열로 바꾼다.
+// 문자열 a 의 길이와 b 의 길이가 같아야한다.
+// a를 순회하며 b문자열을 만났을때 그 인덱스의 값을 없앤다.
+// b배열의 길이가 0이라면 true, 있다면 false 반환
+
+//   const aChars = a.toLowerCase().replaceAll(" ", "");
+//   const bChars = b.toLowerCase().replaceAll(" ", "");
+//   let bCharsArray = bChars.split("");
+
+//   if (aChars.length !== bChars.length) {
+//     return false;
+//   }
+
+//   for (const i of aChars) {
+//     const index = bCharsArray.indexOf(i);
+//     if (index !== -1) {
+//       bCharsArray.splice(index, 1);
+//     } else {
+//       return false;
+//     }
+//   }
+//   return bCharsArray.length === 0;
+// }
+
 function isAnagram(a, b) {
-  //   문자열 a,b를 toLowerCase(), toUpperCase() + 공백제거 하기
-  //   소문자로 공백이 제거된 문자열 b를 배열로 바꾼다.
-  //   문자열 a 의 길이와 b 의 길이가 같아야한다.
-  //   a를 순회하며 b문자열을 만났을때 그 인덱스의 값을 없앤다.
-  //   b배열의 길이가 0이라면 true, 있다면 false 반환
+  // 1. 문자열 a와 b를 소문자로 변환하고 공백 제거
+  const aChars = a.toLowerCase().replace(/\s/g, "");
+  const bChars = b.toLowerCase().replace(/\s/g, "");
 
-  const aChars = a.toLowerCase().replaceAll(" ", "");
-  const bChars = b.toLowerCase().replaceAll(" ", "");
-  let bCharsArray = bChars.split("");
-
-  if (aChars.length !== bChars.length) {
-    return false;
+  // 2. b 문자열을 객체로 변환하여 각 문자의 개수 저장
+  const bCharCount = {};
+  for (const char of bChars) {
+    bCharCount[char] = (bCharCount[char] || 0) + 1;
   }
 
-  for (const i of aChars) {
-    const index = bCharsArray.indexOf(i);
-    if (index !== -1) {
-      bCharsArray.splice(index, 1);
-    } else {
+  // 3. a 문자열을 순회하며 b 객체에 해당 문자가 있는지 확인
+  for (const char of aChars) {
+    if (!bCharCount[char]) {
       return false;
     }
+    bCharCount[char]--;
   }
-  return bCharsArray.length === 0;
+
+  // 4. b 객체의 모든 문자 개수가 0이 되면 true 반환
+  return Object.values(bCharCount).every((count) => count === 0);
 }
 
 // 테스트 코드
