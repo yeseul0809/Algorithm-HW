@@ -8,8 +8,15 @@
 // 입력: "hello world"
 // 출력: "world hello"
 
+// 의사코드
+// split 사용하여 배열에 넣기
+// map 사용하여 새로운 배열을 리턴하기
+// arr[arr.length-1] 요소부터 역순으로 answer[] 에 넣기
+
 function reverseWords(s) {
-  // 문제 풀이
+  const arr = s.split(" ");
+  const answer = arr.map((_, index) => arr[arr.length - 1 - index]);
+  return answer.join(" ");
 }
 
 // 테스트 코드
