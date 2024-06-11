@@ -20,7 +20,12 @@
 // 출력: 3
 // 설명: F(4) = F(3) + F(2) = 2 + 1 = 3.
 
-function fibonacci(n) {}
+// 재귀함수 핵심 -> 문제를 더 작은 하위 문제로 나누고, 하위 문제를 해결한 결과를 결합하여 최종 결과를 얻는다.
+
+function fibonacci(n) {
+  if (n <= 1) return n;
+  return fibonacci(n - 1) + fibonacci(n - 2);
+}
 
 // 테스트 코드
 function testFibonacci() {

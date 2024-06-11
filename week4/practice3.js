@@ -15,7 +15,16 @@
 // 출력: "noisrucer"
 // 설명: "recursion"을 뒤집으면 "noisrucer"가 됩니다.
 
-function reverseString(str) {}
+// 순차적으로 새로운 문자열을 뒤에서부터 앞으로 채워넣는다.(pop사용)
+function reverseString(str) {
+  let answer = str.split("");
+
+  function popString(answer) {
+    if (answer.length === 0) return "";
+    return answer.pop() + popString(answer);
+  }
+  return popString(answer);
+}
 
 // 테스트 코드
 function testReverseString() {
