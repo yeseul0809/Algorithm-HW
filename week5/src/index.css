@@ -1,0 +1,36 @@
+@import "tailwindcss/base";
+@import "tailwindcss/components";
+@import "tailwindcss/utilities";
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+
+    &:focus-visible {
+        @apply outline outline-1 outline-offset-0 outline-state-focus;
+    }
+}
+
+html {
+    font-size: 62.5%;
+}
+
+body {
+    font-size: 1.6rem;
+}
+
+input[type="number"] {
+    -moz-appearance: textfield;
+    appearance: textfield;
+
+    &::-webkit-inner-spin-button,
+    &::-webkit-outer-spin-button {
+        -webkit-appearance: none;
+        margin: 0;
+    }
+}
+
+th {
+    font-weight: 400;
+}
